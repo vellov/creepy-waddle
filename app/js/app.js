@@ -1,17 +1,18 @@
 var app = angular.module("troubleshooter", [
-    "ui.router"
+    "ui.router",
+    "ui.bootstrap"
 ]);
 
 
 app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to home
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/");
 
     $stateProvider
         .state('home', {
-            url: "/home",
-            templateUrl: "app/templates/home.html"
+            url: "/",
+            templateUrl: "app/templates/main.html"
         })
 }]);
 
