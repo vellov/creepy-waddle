@@ -1,6 +1,7 @@
 var app = angular.module("troubleshooter", [
     "ui.router",
-    "ui.bootstrap"
+    "ui.bootstrap",
+    "ngSanitize"
 ]);
 
 

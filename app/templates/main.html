@@ -1,34 +1,30 @@
-<div class="container">
+<div class="custom-container">
 
-    <div class="row row-offcanvas row-offcanvas-left" ng-class="{'active': toggleNav}">
+    <div class="text-center" ng-if="!view">
+        <h2 class="m-t-none">Abi lehe pealkiri</h2>
+        <div ng-repeat="item in data">
+            <a href class="btn btn-primary m-t-s w200" ng-click="setItemActive(item)">{{item.title}}<br/></a>
+        </div>
+    </div>
 
-        <!-- Sidebar-offcanvas-->
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
-            <div class="list-group">
-                <a href="#" class="list-group-item active">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
+    <div class="text-center" ng-if="view">
+        <div class="row">
+            <h5 class="counter-margin-26" ng-if="breadCrumbs.length">
+                <span ng-repeat="item in breadCrumbs"><a href ng-click="setItemActive(item)">{{item.title}} </a><i class="glyphicon glyphicon-chevron-right icon-color"></i></span>
+                <a href>{{view.title}}</a>
+            </h5>
+            <h2 class="m-t-none">{{view.title}}</h2>
+            <p class="padding-sides-100" ng-bind-html="view.content"></p>
+            <div ng-if="view.childs.length > 1" ng-repeat="child in view.childs">
+                <a href class="btn btn-primary w200 m-t-s" ng-click="setItemActive(child)">{{child.title}}</a>
             </div>
         </div>
-        <!--/.sidebar-offcanvas-->
 
-        <div class="col-xs-12 col-sm-9">
-            <p class="pull-left visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" ng-click="toggleNav =!toggleNav">Toggle nav</button>
-            </p>
-
-
-        </div><!--/.col-xs-12.col-sm-9-->
-    </div><!--/row-->
-
-
+        <div class="m-t-m">
+            <a href ng-click="activatePreviousItem()" ng-if="breadCrumbs.length"><i class="glyphicon glyphicon-arrow-left"></i> Tagasi</a>
+            <a href class="m-left-10" ng-click="activateNextChild()" ng-if="view.childs.length == 1">Edasi <i class="glyphicon glyphicon-arrow-right"></i></a>
+        </div>
+    </div>
 </div><!--/.container-->
 
 <div ng-include="'app/templates/footer.html'"></div>
